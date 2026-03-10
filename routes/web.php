@@ -9,8 +9,7 @@ Route::get('/', [AppealController::class, 'index'])->name('appeals.index');
 Route::get('/appeal/create', [AppealController::class, 'create'])->name('appeals.create');
 
 Route::post('/appeal', [AppealController::class, 'store'])
-    ->name('appeals.store')
-    ->middleware('throttle:appeal-submit');
+    ->name('appeals.store');
 
 Route::get('/appeal/{code}', [AppealController::class, 'show'])->name('appeals.show');
 
