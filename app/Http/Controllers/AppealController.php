@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppealRequest;
-use App\Mail\AppealConfirmation;
 use App\Models\Category;
 use App\Services\AppealService;
 use App\Services\TelegramService;
-use Illuminate\Support\Facades\Mail;
 
 class AppealController extends Controller
 {
@@ -46,10 +44,6 @@ class AppealController extends Controller
         $appeal = $this->appealService->create($data);
 
         $this->telegram->sendNewAppealNotification($appeal);
-
-        if ($appeal->email) {
-            Mail::to($appeal->email)->send(new AppealConfirmation($appeal));
-        }
 
         return view('appeals.submitted', [
             'tracking_code' => $appeal->tracking_code,
