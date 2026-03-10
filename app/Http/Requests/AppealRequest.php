@@ -17,7 +17,7 @@ class AppealRequest extends FormRequest
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'full_name'   => ['required', 'string', 'min:3', 'max:100'],
             'phone'       => ['required', 'string', 'regex:/^\+998[0-9]{9}$/'],
-            'email'       => ['nullable', 'email:rfc,dns', 'max:255'],
+            'email'       => ['nullable', 'email:rfc', 'max:255'],
             'subject'     => ['required', 'string', 'min:5', 'max:200'],
             'body'        => ['required', 'string', 'min:20', 'max:2000'],
             'files'       => ['nullable', 'array', 'max:5'],

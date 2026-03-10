@@ -123,7 +123,7 @@ class TelegramService
     private function call(string $method, array $payload): void
     {
         try {
-            $response = Http::post("{$this->apiBase}/{$method}", $payload);
+            $response = Http::timeout(10)->post("{$this->apiBase}/{$method}", $payload);
 
             if (!$response->successful()) {
                 Log::warning("Telegram API [{$method}] failed", [
