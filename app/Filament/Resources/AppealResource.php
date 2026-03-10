@@ -128,8 +128,7 @@ class AppealResource extends Resource
                                 ->label('Sana')
                                 ->dateTime('d.m.Y H:i'),
                         ])
-                        ->columns(2)
-                        ->emptyLabel('Hali javob berilmagan.'),
+                        ->columns(2),
                 ]),
 
             Infolists\Components\Section::make('Holat tarixi')
