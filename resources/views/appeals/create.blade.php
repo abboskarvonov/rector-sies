@@ -180,12 +180,11 @@
                     </div>
 
                     {{-- Body --}}
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-2" x-data="{ count: {{ strlen(old('body', '')) }} }">
                         <label class="block text-sm font-medium text-gray-700 mb-1">
                             Murojaat matni <span class="text-red-500">*</span>
                         </label>
                         <textarea name="body" rows="6"
-                                  x-data="{ count: {{ strlen(old('body', '')) }} }"
                                   @input="count = $el.value.length"
                                   placeholder="Murojaatingizni batafsil yozing (kamida 20 ta belgi)..."
                                   class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition resize-none @error('body') border-red-400 bg-red-50 @enderror">{{ old('body') }}</textarea>
