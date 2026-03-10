@@ -46,7 +46,7 @@
     </div>
 
     {{-- ===== FORM ===== --}}
-    <form method="POST" action="{{ route('appeals.store') }}" enctype="multipart/form-data" id="appealForm">
+    <form method="POST" action="{{ route('appeals.store') }}" enctype="multipart/form-data" id="appealForm" @submit="submitting = true">
         @csrf
 
         {{-- Hidden field carried from step 1 --}}
@@ -294,7 +294,6 @@
                 </button>
 
                 <button type="submit" :disabled="submitting"
-                        @click="submitting = true"
                         :class="submitting ? 'opacity-60 cursor-wait' : 'hover:bg-primary-700'"
                         class="px-8 py-3 rounded-xl bg-primary-600 text-white font-semibold transition flex items-center gap-2 shadow-md">
                     <svg x-show="submitting" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
