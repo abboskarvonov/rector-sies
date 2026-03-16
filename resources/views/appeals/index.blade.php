@@ -5,7 +5,7 @@
 @push('styles')
     <style>
         .hero-pattern {
-            background-color: #15803d;
+            background-color: #0f766e;
             background-image:
                 radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.07) 0%, transparent 40%),
@@ -28,7 +28,7 @@
             left: calc(50% + 28px);
             width: calc(100% - 56px);
             height: 2px;
-            background: #bbf7d0;
+            background: #99f6e4;
         }
 
         @media (max-width: 767px) {
@@ -48,16 +48,7 @@
             {{-- Emblem --}}
             <div
                 class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center shadow-xl mb-6 ring-4 ring-white/30">
-                <svg class="w-14 h-14 sm:w-20 sm:h-20 text-primary-700" viewBox="0 0 80 80" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    {{-- Graduation cap --}}
-                    <path d="M40 12L8 28L40 44L72 28L40 12Z" fill="currentColor" opacity="0.9" />
-                    <path d="M24 35v14c0 4.4 7.2 8 16 8s16-3.6 16-8V35L40 44 24 35Z" fill="currentColor" opacity="0.7" />
-                    <rect x="68" y="28" width="4" height="16" rx="2" fill="currentColor" opacity="0.6" />
-                    <circle cx="70" cy="46" r="3" fill="currentColor" opacity="0.6" />
-                    {{-- Book lines --}}
-                    <path d="M34 24h12M34 29h8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5" />
-                </svg>
+                <img src="{{ asset('img/logo.webp') }}" alt="Logo" class="w-24 h-24 sm:w-32 sm:h-32 object-cover">
             </div>
 
             {{-- Institute name --}}
@@ -93,55 +84,176 @@
         </div>
     </section>
 
-    {{-- ===== ACTION CARDS ===== --}}
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
-
-        <a href="{{ route('appeals.create') }}"
-            class="card-hover block bg-white rounded-2xl border border-gray-100 shadow-sm p-7 group">
-            <div
-                class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary-200 transition">
-                <svg class="w-6 h-6 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-            </div>
-            <h2 class="text-lg font-bold text-gray-800 mb-1 group-hover:text-primary-700 transition">Murojaat yuborish</h2>
-            <p class="text-sm text-gray-500 leading-relaxed">
-                Rektorga shikoyat, taklif yoki so'rovingizni onlayn yuboring.
-                Barcha murojaatlar maxfiy saqlanadi.
-            </p>
+    {{-- ===== RECEPTION SCHEDULE ===== --}}
+    <section class="mb-12">
+        <div class="text-center mb-8">
             <span
-                class="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-primary-600 group-hover:gap-2 transition-all">
-                Boshlash
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </span>
-        </a>
+                class="inline-block text-xs font-semibold tracking-widest uppercase text-primary-600 bg-primary-50 px-3 py-1 rounded-full mb-3">Qabul
+                jadvali</span>
+            <h2 class="text-xl font-bold text-gray-800">Institut rahbarlarining qabul kunlari</h2>
+            <p class="text-sm text-gray-500 mt-2">Rahbarlar bilan shaxsiy uchrashuv uchun qabul vaqtlari</p>
+        </div>
 
-        <a href="{{ route('tracking.index') }}"
-            class="card-hover block bg-white rounded-2xl border border-gray-100 shadow-sm p-7 group">
-            <div
-                class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition">
-                <svg class="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-            </div>
-            <h2 class="text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-700 transition">Murojaatni kuzatish</h2>
-            <p class="text-sm text-gray-500 leading-relaxed">
-                Tracking kodi orqali murojaatingiz holatini, ko'rib chiqish jarayonini
-                va javobini kuzating.
-            </p>
-            <span
-                class="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-blue-600 group-hover:gap-2 transition-all">
-                Tekshirish
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </span>
-        </a>
+        @php
+            $leaders = [
+                [
+                    'num' => 1,
+                    'name' => "Muhiddin Po'latov Egamberdiyevich",
+                    'position' => 'Rektor',
+                    'days' => 'Dushanba, Seshanba, Chorshanba, Payshanba, Juma',
+                    'time' => '15:00 – 18:00',
+                    'color' => 'primary',
+                    'icon' =>
+                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                ],
+                [
+                    'num' => 2,
+                    'name' => 'Berdimurodov Azizjon Shukrilloyevich',
+                    'position' => "Yoshlar masalalari va ma'naviy-ma'rifiy ishlar bo'yicha birinchi prorektor",
+                    'days' => 'Seshanba, Payshanba, Juma',
+                    'time' => '14:00 – 18:00',
+                    'color' => 'blue',
+                    'icon' =>
+                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>',
+                ],
+                [
+                    'num' => 3,
+                    'name' => "Sharipov To'lqin Saidahmedovich",
+                    'position' => "O'quv ishlari bo'yicha prorektor",
+                    'days' => 'Seshanba, Payshanba, Juma',
+                    'time' => '14:00 – 18:00',
+                    'color' => 'violet',
+                    'icon' =>
+                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>',
+                ],
+                [
+                    'num' => 4,
+                    'name' => 'Abdusaidov Akmal Abduvaliyevich',
+                    'position' => "Ilmiy ishlar va innovatsiyalar bo'yicha prorektor v.v.b",
+                    'days' => 'Seshanba, Payshanba, Shanba',
+                    'time' => '14:00 – 18:00',
+                    'color' => 'orange',
+                    'icon' =>
+                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>',
+                ],
+                [
+                    'num' => 5,
+                    'name' => 'Ibadullayev Nurali Eshniyazovich',
+                    'position' => "Moliya iqtisod ishlari bo'yicha prorektor",
+                    'days' => 'Seshanba, Payshanba, Shanba',
+                    'time' => '14:00 – 18:00',
+                    'color' => 'emerald',
+                    'icon' =>
+                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                ],
+            ];
+            $palette = [
+                'primary' => [
+                    'bg' => 'bg-primary-50',
+                    'border' => 'border-primary-200',
+                    'icon' => 'bg-primary-100 text-primary-600',
+                    'badge' => 'bg-primary-600 text-white',
+                    'day' => 'bg-primary-50 text-primary-700 border-primary-200',
+                    'time' => 'text-primary-700',
+                    'dot' => 'bg-primary-500',
+                ],
+                'blue' => [
+                    'bg' => 'bg-blue-50',
+                    'border' => 'border-blue-200',
+                    'icon' => 'bg-blue-100 text-blue-600',
+                    'badge' => 'bg-blue-600 text-white',
+                    'day' => 'bg-blue-50 text-blue-700 border-blue-200',
+                    'time' => 'text-blue-700',
+                    'dot' => 'bg-blue-500',
+                ],
+                'violet' => [
+                    'bg' => 'bg-violet-50',
+                    'border' => 'border-violet-200',
+                    'icon' => 'bg-violet-100 text-violet-600',
+                    'badge' => 'bg-violet-600 text-white',
+                    'day' => 'bg-violet-50 text-violet-700 border-violet-200',
+                    'time' => 'text-violet-700',
+                    'dot' => 'bg-violet-500',
+                ],
+                'orange' => [
+                    'bg' => 'bg-orange-50',
+                    'border' => 'border-orange-200',
+                    'icon' => 'bg-orange-100 text-orange-600',
+                    'badge' => 'bg-orange-500 text-white',
+                    'day' => 'bg-orange-50 text-orange-700 border-orange-200',
+                    'time' => 'text-orange-700',
+                    'dot' => 'bg-orange-500',
+                ],
+                'emerald' => [
+                    'bg' => 'bg-emerald-50',
+                    'border' => 'border-emerald-200',
+                    'icon' => 'bg-emerald-100 text-emerald-600',
+                    'badge' => 'bg-emerald-600 text-white',
+                    'day' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    'time' => 'text-emerald-700',
+                    'dot' => 'bg-emerald-500',
+                ],
+            ];
+        @endphp
 
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            @foreach ($leaders as $leader)
+                @php $p = $palette[$leader['color']]; @endphp
+                <div
+                    class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden
+                    {{ $loop->first ? 'sm:col-span-2' : '' }}">
+
+                    {{-- Card top accent bar --}}
+                    <div class="h-1 {{ $p['dot'] }}"></div>
+
+                    <div class="p-5">
+
+                        {{-- Header row --}}
+                        <div class="flex items-start justify-between gap-3 mb-4">
+                            <div class="w-11 h-11 {{ $p['icon'] }} rounded-xl flex items-center justify-center shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {!! $leader['icon'] !!}
+                                </svg>
+                            </div>
+                            <span
+                                class="text-xs font-bold {{ $p['badge'] }} w-7 h-7 rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                {{ $leader['num'] }}
+                            </span>
+                        </div>
+
+                        {{-- Name & position --}}
+                        <h3 class="font-bold text-gray-800 text-sm leading-snug mb-1">{{ $leader['name'] }}</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">{{ $leader['position'] }}</p>
+
+                        {{-- Divider --}}
+                        <div class="border-t border-gray-100 mb-4"></div>
+
+                        {{-- Days --}}
+                        <div class="flex items-start gap-2 mb-3">
+                            <div class="w-7 h-7 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">{{ $leader['days'] }}</p>
+                        </div>
+
+                        {{-- Time --}}
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 {{ $p['icon'] }} rounded-lg flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span class="text-sm font-bold {{ $p['time'] }}">{{ $leader['time'] }}</span>
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </section>
 
     {{-- ===== HOW IT WORKS ===== --}}

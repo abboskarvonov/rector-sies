@@ -27,6 +27,7 @@ class Appeal extends Model
         'tracking_code',
         'category_id',
         'full_name',
+        'passport_number',
         'phone',
         'email',
         'subject',

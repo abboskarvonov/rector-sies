@@ -7,51 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Elektron Qabulxona') — SamISI</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-
-        .step-connector::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -50%;
-            width: 100%;
-            height: 2px;
-            background: #e5e7eb;
-            z-index: 0;
-        }
-
-        .step-connector.done::before {
-            background: #16a34a;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('styles')
 </head>
@@ -65,9 +21,7 @@
             {{-- Logo + name --}}
             <a href="{{ route('appeals.index') }}" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0 shadow">
-                    <svg class="w-6 h-6 text-primary-700" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
-                    </svg>
+                    <img src="{{ asset('img/logo.webp') }}" alt="Logo" class="w-11 h-11 object-cover">
                 </div>
                 <div class="leading-tight">
                     <p
@@ -164,7 +118,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
                         </svg>
-                        +998 (66) 239-00-00
+                        +998 (66) 231-03-93
                     </li>
                     <li class="flex items-center gap-2">
                         <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

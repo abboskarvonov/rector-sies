@@ -49,11 +49,81 @@
     <form method="POST" action="{{ route('appeals.store') }}" enctype="multipart/form-data" id="appealForm" @submit="submitting = true">
         @csrf
 
-        {{-- Hidden field carried from step 1 --}}
+        {{-- Hidden field carried from step 2 --}}
         <input type="hidden" name="category_id" x-model="selectedCategory">
 
-        {{-- =================== STEP 1: CATEGORY =================== --}}
+        {{-- =================== STEP 1: OFERTA =================== --}}
         <div x-show="currentStep === 1" x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center shrink-0">
+                        <svg class="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Ommaviy Oferta</h2>
+                        <p class="text-sm text-gray-400">Davom etishdan oldin quyidagi shartlarni o'qib chiqing</p>
+                    </div>
+                </div>
+
+                <div x-data="{ scrolled: false }"
+                     @scroll="scrolled = scrolled || ($el.scrollHeight - $el.scrollTop - $el.clientHeight < 10)"
+                     class="relative bg-gray-50 border border-gray-200 rounded-xl p-5 text-sm text-gray-700 leading-relaxed space-y-3 max-h-80 overflow-y-auto">
+                    <p>Hurmatli foydalanuvchi!</p>
+                    <p>Sizga Samarqand iqtisodiyot va servis instituti rektoriga bevosita elektron tarzda murojaatlarni yuborish imkoniyati mavjud. Shu bilan birga, Sizning yuborayotgan murojaatingiz rasmiy maqomga ega bo'lib hisoblanadi.</p>
+                    <p>Shu sababli, Sizdan quyidagilarni unutmasligingizni so'raymiz:</p>
+                    <p>Murojaat yo'llayotganingizda familiyangiz, ismingiz, otangizning ismi, yashash joyingiz to'g'risidagi ma'lumotlar ko'rsatilgan va murojaatingiz mohiyati to'liq va tushunarli bayon etilgan bo'lishi shart.</p>
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                        <p class="font-semibold text-amber-800">Alohida e'tibor bering!</p>
+                        <p class="text-amber-700 mt-1">Tuhmat, haqoratli so'zlar ishlatilgan va yolg'on xabar beruvchi murojaatlarni taqdim etish qonunda belgilangan tartibda javobgarlikka sabab bo'lishi mumkin.</p>
+                    </div>
+                    <p>Shuningdek, quyidagi holatlarda murojaatlaringiz rad etilishi mumkin:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-600 pl-1">
+                        <li>odobsizlik mazmunidagi murojaatlar (uyatsiz yoxud haqoratli iboralar, tahdidlar, turli xil ma'nosi bo'lmagan takliflar va shunga o'xshash murojaatlar);</li>
+                        <li>murojaat matnida tushunarsiz qisqartirishlar yoki reklama materiallari mavjud bo'lgan, tarkibida aniq arizalar, shikoyatlar yoki takliflar bo'lmagan murojaatlar.</li>
+                    </ul>
+                    <p>Shuningdek, foydalanuvchining bir necha bor bitta masala bo'yicha javob berilgan murojaatini qayta yuborilganda, agar unda yangi vajlar yoki holatlar keltirilmagan bo'lsa, O'zbekiston Respublikasining amaldagi qonunchiligiga muvofiq ko'rib chiqilmaydi.</p>
+
+                    {{-- scroll hint --}}
+                    <div x-show="!scrolled"
+                         class="sticky bottom-0 left-0 right-0 pt-6 pb-1 bg-linear-to-t from-gray-50 to-transparent pointer-events-none flex justify-center">
+                        <span class="text-xs text-gray-400 flex items-center gap-1">
+                            <svg class="w-3 h-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                            Pastga aylantiring
+                        </span>
+                    </div>
+
+                    <label :class="scrolled ? 'opacity-100 cursor-pointer' : 'opacity-40 pointer-events-none'"
+                           class="flex items-start gap-3 pt-2 transition-opacity duration-300 group">
+                        <input type="checkbox" x-model="ofertaConfirmed" :disabled="!scrolled"
+                               class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-400 shrink-0">
+                        <span class="text-sm text-gray-700 group-hover:text-gray-900 transition select-none">
+                            Men yuqoridagi ommaviy oferta bilan tanishib chiqdim va uning shartlariga roziman
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button type="button" @click="nextStep()"
+                        :disabled="!ofertaConfirmed"
+                        :class="ofertaConfirmed ? 'bg-primary-600 hover:bg-primary-700 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'"
+                        class="px-8 py-3 rounded-xl text-white font-semibold transition-colors duration-200 flex items-center gap-2">
+                    Davom etish
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        {{-- =================== STEP 2: CATEGORY =================== --}}
+        <div x-show="currentStep === 2" x-transition:enter="transition ease-out duration-200"
              x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
@@ -103,7 +173,14 @@
                 @endif
             </div>
 
-            <div class="flex justify-end mt-6">
+            <div class="flex justify-between mt-6">
+                <button type="button" @click="prevStep()"
+                        class="px-6 py-3 rounded-xl border border-gray-300 text-gray-600 font-medium hover:bg-gray-100 transition flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Orqaga
+                </button>
                 <button type="button" @click="nextStep()"
                         :disabled="!selectedCategory"
                         :class="selectedCategory ? 'bg-primary-600 hover:bg-primary-700 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'"
@@ -116,8 +193,8 @@
             </div>
         </div>
 
-        {{-- =================== STEP 2: PERSONAL INFO =================== --}}
-        <div x-show="currentStep === 2" x-transition:enter="transition ease-out duration-200"
+        {{-- =================== STEP 3: PERSONAL INFO =================== --}}
+        <div x-show="currentStep === 3" x-transition:enter="transition ease-out duration-200"
              x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
@@ -135,6 +212,33 @@
                                placeholder="Surname Name Patronymic"
                                class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition @error('full_name') border-red-400 bg-red-50 @enderror">
                         @error('full_name')
+                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Passport --}}
+                    <div x-data="{
+                        val: '{{ old('passport_number', '') }}',
+                        format(e) {
+                            let raw = e.target.value.toUpperCase();
+                            let l = '', d = '';
+                            for (let c of raw) {
+                                if (l.length < 2 && /[A-Z]/.test(c)) l += c;
+                                else if (l.length === 2 && d.length < 7 && /[0-9]/.test(c)) d += c;
+                            }
+                            this.val = l + d;
+                        }
+                    }">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            Pasport seriyasi va raqami <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="passport_number"
+                               x-model="val"
+                               @input="format($event)"
+                               maxlength="9"
+                               placeholder="AA1234567"
+                               class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition tracking-widest font-mono uppercase @error('passport_number') border-red-400 bg-red-50 @enderror">
+                        @error('passport_number')
                             <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -218,8 +322,8 @@
             </div>
         </div>
 
-        {{-- =================== STEP 3: FILES & CONFIRM =================== --}}
-        <div x-show="currentStep === 3" x-transition:enter="transition ease-out duration-200"
+        {{-- =================== STEP 4: FILES & CONFIRM =================== --}}
+        <div x-show="currentStep === 4" x-transition:enter="transition ease-out duration-200"
              x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
@@ -316,9 +420,10 @@
 <script>
 function wizard() {
     return {
-        currentStep: {{ $errors->any() ? 2 : 1 }},
-        steps: ['Kategoriya', 'Ma\'lumotlar', 'Tasdiqlash'],
+        currentStep: {{ $errors->any() ? 3 : 1 }},
+        steps: ['Oferta', 'Kategoriya', 'Ma\'lumotlar', 'Tasdiqlash'],
         selectedCategory: '{{ old('category_id', '') }}',
+        ofertaConfirmed: {{ $errors->any() ? 'true' : 'false' }},
         submitting: false,
 
         selectCategory(id) {
@@ -326,11 +431,13 @@ function wizard() {
         },
 
         goToStep(step) {
-            if (step < this.currentStep) this.currentStep = step;
+            if (step === 1) { this.currentStep = 1; return; }
+            if (step <= this.currentStep && this.ofertaConfirmed) this.currentStep = step;
         },
 
         nextStep() {
-            if (this.currentStep === 1 && !this.selectedCategory) return;
+            if (this.currentStep === 1 && !this.ofertaConfirmed) return;
+            if (this.currentStep === 2 && !this.selectedCategory) return;
             if (this.currentStep < this.steps.length) this.currentStep++;
         },
 
