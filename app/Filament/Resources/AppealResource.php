@@ -98,7 +98,10 @@ class AppealResource extends Resource
                         ->label('Ilovalar')
                         ->columnSpanFull()
                         ->html()
-                        ->formatStateUsing(function (?array $state): string {
+                        ->formatStateUsing(function (mixed $state): string {
+                            if (is_string($state)) {
+                                $state = $state === '' ? [] : [$state];
+                            }
                             if (empty($state)) return '<span class="text-gray-400">—</span>';
                             $links = array_map(fn ($f) =>
                                 '<a href="' . Storage::url($f) . '" target="_blank"
