@@ -99,8 +99,8 @@ class AppealResource extends Resource
                         ->columnSpanFull()
                         ->html()
                         ->formatStateUsing(function (mixed $state): string {
-                            if (is_string($state)) {
-                                $state = $state === '' ? [] : [$state];
+                            if (!is_array($state)) {
+                                $state = $state === null || $state === '' ? [] : [$state];
                             }
                             if (empty($state)) return '<span class="text-gray-400">—</span>';
                             $links = array_map(fn ($f) =>
